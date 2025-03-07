@@ -6,7 +6,7 @@ class TTS:
         self.model = malaya_speech.tts.vits(model=model_name)
 
     def generate_audio(self, text, output_file):
-        result = self.model.predict(text)
+        result = self.model.predict(text, temperature=0.6666, length_ratio=1)
         audio_data = result['y']
         
         # Save the audio data to a file
