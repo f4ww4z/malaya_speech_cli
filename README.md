@@ -1,56 +1,88 @@
-# Malaya Speech CLI
+# Malaya Speech TTS - Malaysian Text-to-Speech Web Application
 
-This project utilizes the Malaya Speech TTS VITS multispeaker model to generate audio files from text input. Each line of a text file corresponds to a separate audio file, allowing for easy conversion of paragraphs into speech.
+A beautiful, dockerized FastAPI web application for Malaysian language Text-to-Speech (TTS) using Malaya Speech.
 
-## Project Structure
+## Features
 
-```
-malaya-speech-cli
-├── src
-│   ├── __init__.py
-│   ├── main.py          # Entry point for the CLI application
-│   ├── tts.py           # Contains the TTS class for audio generation
-│   ├── config.py        # Configuration settings for the project
-│   └── utils
-│       ├── __init__.py
-│       ├── audio.py     # Utility functions for audio operations
-│       └── text.py      # Utility functions for text processing
-├── tests
-│   ├── __init__.py
-│   ├── test_tts.py      # Unit tests for TTS functionality
-│   └── test_utils.py     # Unit tests for utility functions
-├── data
-│   ├── input
-│   │   └── sample.txt   # Sample input text for audio generation
-│   └── output           # Directory for generated audio files
-├── requirements.txt      # Project dependencies
-├── setup.py              # Setup script for the project
-├── .gitignore            # Files and directories to ignore by Git
-└── README.md             # Project documentation
-```
+- Interactive web interface with beautiful animations
+- Multiple Malaysian voice models support
+- Batch processing of text lines
+- Downloadable audio output files
+- Responsive design for all devices
+- Easy setup with Docker
 
-## Installation
+## Available Voice Models
 
-To install the required dependencies, run:
+- Osman
+- Yasmin
+- Female Singlish
+- Haqkiem
 
-```bash
-uv sync
-```
+## Quick Start with Docker
+
+1. Make sure you have Docker and Docker Compose installed.
+
+2. Clone this repository:
+   ```
+   git clone <repository-url>
+   cd malaya_speech_cli
+   ```
+
+3. Create `.env` file and specify `PORT=xxxx`
+
+4. Build and start the Docker container:
+   ```
+   docker-compose up -d
+   ```
+
+5. Access the web application in your browser:
+   ```
+   http://localhost:<PORT>
+   ```
 
 ## Usage
 
-To generate audio files from the text in `data/input/sample.txt`, run the following command:
+1. Open the web application in your browser.
+2. Select a voice model from the dropdown.
+3. Enter your text (one line per audio file) in the text area.
+4. Click "Convert to Speech" to generate the audio.
+5. Use the player to preview the generated audio.
+6. Download individual audio files or all files at once.
 
-```bash
-python src/main.py data/input/sample.txt
-```
+## Development
 
-This will create audio files in the `data/output` directory, with each line of the input text resulting in a separate audio file.
+### Prerequisites
 
-## Contributing
+- Python 3.8+
+- Required packages listed in `requirements.txt`
+- Additional packages: `fastapi`, `uvicorn`, `jinja2`
 
-Contributions are welcome! Please feel free to submit a pull request or open an issue for any enhancements or bug fixes.
+### Local Setup (without Docker)
+
+1. Install dependencies:
+   ```
+   pip install -r requirements.txt
+   pip install fastapi uvicorn jinja2
+   ```
+
+2. Run the application:
+   ```
+   cd malaya_speech_cli
+   uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+   ```
+
+## API Endpoints
+
+- `GET /api/models` - Get all available TTS models
+- `POST /api/synthesize` - Synthesize speech from a single text
+- `POST /api/synthesize-batch` - Synthesize speech from multiple lines of text
+- `GET /api/download/{filename}` - Download an audio file
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+This project is open-source under the terms of the original licensing terms of Malaya Speech.
+
+## Credits
+
+- Malaya Speech for the TTS models
+- [LottieFiles](https://lottiefiles.com/) for the animations

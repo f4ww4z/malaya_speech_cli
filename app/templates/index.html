@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malaya Speech TTS</title>
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/lottie-web@5.12.2/build/player/lottie.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div id="animation-container"></div>
+                <h1>Malaya<span>Speech</span> TTS</h1>
+            </div>
+            <p class="tagline">Malaysian Text-to-Speech Converter</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Text to Speech Converter</h2>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="voice-model">Voice Model:</label>
+                        <select id="voice-model" class="form-control">
+                            <option value="" disabled selected>Loading models...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="text-input">Text Input (one line per audio):</label>
+                        <textarea id="text-input" class="form-control" rows="5" placeholder="Enter text in Malaysian language..."></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button id="convert-btn" class="btn btn-primary">
+                            <i class="fas fa-microphone"></i> Convert to Speech
+                        </button>
+                        <button id="clear-btn" class="btn btn-secondary">
+                            <i class="fas fa-trash"></i> Clear
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card results-card" id="results-container" style="display: none;">
+                <div class="card-header">
+                    <h2>Generated Audio</h2>
+                </div>
+                <div class="card-body">
+                    <div id="audio-results" class="audio-results">
+                        <!-- Audio results will be inserted here -->
+                    </div>
+                    <div class="form-actions">
+                        <button id="download-all-btn" class="btn btn-success" style="display: none;">
+                            <i class="fas fa-download"></i> Download All
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="loading-overlay" class="loading-overlay" style="display: none;">
+                <div class="loading-content">
+                    <div id="loading-animation"></div>
+                    <p>Generating speech...</p>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Malaya Speech TTS. Powered by FastAPI and Malaya Speech.</p>
+        </footer>
+    </div>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>

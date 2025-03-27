@@ -1,0 +1,17 @@
+services:
+  malaya-speech-tts:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: malaya-speech-tts
+    ports:
+      - "${PORT}:8000"
+    volumes:
+      - ./app:/app/app
+      - tts-audio-data:/app/app/static/audio
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Kuala_Lumpur
+
+volumes:
+  tts-audio-data:
